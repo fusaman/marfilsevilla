@@ -167,8 +167,13 @@
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.35); /* Aumentada la opacidad para mejor contraste */
             z-index: 1;
+        }
+        
+        /* NUEVO: Sombra iluminada para el texto */
+        .text-glow-contrast {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.8);
         }
     </style>
 </head>
@@ -262,11 +267,11 @@
         </div>
         
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
-            <h2 class="text-xs md:text-sm text-gray-800 uppercase tracking-[0.4em] mb-6 animate-fade-up font-bold">Sevilla · Madrid</h2>
-            <h1 class="text-5xl md:text-8xl font-serif font-light text-gray-900 leading-tight mb-8 animate-fade-up" style="animation-delay: 0.2s;">
+            <h2 class="text-xs md:text-sm text-gray-800 uppercase tracking-[0.4em] mb-6 animate-fade-up font-bold text-glow-contrast">Sevilla · Marbella</h2>
+            <h1 class="text-5xl md:text-8xl font-serif font-light text-gray-900 leading-tight mb-8 animate-fade-up text-glow-contrast" style="animation-delay: 0.2s;">
                 La pureza <br> <span class="italic">del material</span>
             </h1>
-            <p class="text-gray-800 font-medium text-sm md:text-base max-w-lg mx-auto mb-10 leading-relaxed animate-fade-up shadow-sm" style="animation-delay: 0.4s;">
+            <p class="text-gray-800 font-medium text-sm md:text-base max-w-lg mx-auto mb-10 leading-relaxed animate-fade-up shadow-sm text-glow-contrast" style="animation-delay: 0.4s;">
                 Transformamos el microcemento en superficies de calma. <br>Diseño de interiores que respira.
             </p>
             <div class="animate-fade-up" style="animation-delay: 0.6s;">
