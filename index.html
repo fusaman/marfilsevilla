@@ -8,13 +8,13 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Cormorant Garamond (Elegante) & Montserrat (Limpia) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
     
     <!-- FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    <!-- GSAP Animation Library -->
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
@@ -38,10 +38,6 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        /* Utility Classes */
-        .text-balance { text-wrap: balance; }
-        
-        /* Custom Button */
         .btn-elegant {
             position: relative;
             display: inline-block;
@@ -76,105 +72,39 @@
             border-color: var(--primary);
         }
 
-        /* Image Hover Effect */
-        .img-zoom-container {
-            overflow: hidden;
-        }
-        .img-zoom-container img {
-            transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        .img-zoom-container:hover img {
-            transform: scale(1.05);
-        }
+        .img-zoom-container { overflow: hidden; }
+        .img-zoom-container img { transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .img-zoom-container:hover img { transform: scale(1.05); }
 
-        /* Navigation Link Animation */
-        .nav-link {
-            position: relative;
-        }
+        .nav-link { position: relative; }
         .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
+            content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0;
+            background-color: var(--primary); transition: width 0.3s ease;
         }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Slider Before/After Styling Update */
-        .comparison-container {
-            position: relative;
-            width: 100%;
-            height: 60vh;
-            overflow: hidden;
-        }
-        .slider-handle {
-            position: absolute;
-            z-index: 9;
-            cursor: ew-resize;
-            width: 50px;
-            height: 50px;
-            background-color: white;
-            border: 1px solid #e5e5e5;
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            color: #333;
-        }
-        .slider-line {
-            background-color: white;
-            width: 1px;
-        }
+        .nav-link:hover::after { width: 100%; }
 
         /* Loader */
         .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 9999; display: flex; justify-content: center; align-items: center;
         }
         
-        /* Hero Slider Styles */
+        /* Hero Slider */
         .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-            object-fit: cover;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; transition: opacity 2s ease-in-out; object-fit: cover;
         }
-        .hero-slide.active {
-            opacity: 1;
-        }
-        /* Overlay para mejorar lectura del texto sobre las fotos */
+        .hero-slide.active { opacity: 1; }
         .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(255,255,255,0.35); /* Aumentada la opacidad para mejor contraste */
-            z-index: 1;
+            position: absolute; inset: 0; background: rgba(255,255,255,0.35); z-index: 1;
         }
-        
-        /* NUEVO: Sombra iluminada para el texto */
         .text-glow-contrast {
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.8);
         }
+
+        /* Shop Card */
+        .shop-card { border: 1px solid #f0f0f0; transition: all 0.3s; }
+        .shop-card:hover { border-color: #dcd7d1; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body class="antialiased">
@@ -184,39 +114,21 @@
         <span class="font-serif italic text-2xl tracking-widest animate-pulse">Marfil.</span>
     </div>
 
-    <!-- NEWSLETTER POP-UP (NUEVO) -->
+    <!-- NEWSLETTER POP-UP -->
     <div id="newsletter-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-700">
-        <!-- Fondo con Blur -->
         <div class="absolute inset-0 bg-black/40 backdrop-blur-md transition-opacity" id="modal-backdrop"></div>
-        
-        <!-- Contenido del Modal -->
         <div class="relative bg-[#fcfbf9] p-8 md:p-14 max-w-lg w-full mx-4 shadow-2xl text-center transform scale-95 transition-transform duration-500 border border-gray-100" id="modal-content">
             <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-black transition duration-300">
                 <i class="fas fa-times text-xl"></i>
             </button>
-            
-            <div class="mb-6">
-                <span class="text-xs uppercase tracking-[0.3em] text-gray-400">Newsletter</span>
-            </div>
-            
+            <div class="mb-6"><span class="text-xs uppercase tracking-[0.3em] text-gray-400">Newsletter</span></div>
             <h3 class="text-3xl md:text-4xl font-serif italic mb-4 text-gray-800">Inspiración Diaria</h3>
-            <p class="text-gray-500 mb-8 font-light leading-relaxed">
-                Suscríbete a nuestra lista exclusiva y recibe un <br>
-                <span class="font-medium text-black border-b border-black">20% de descuento</span> en tu primer proyecto de microcemento.
-            </p>
-            
+            <p class="text-gray-500 mb-8 font-light leading-relaxed">Suscríbete y recibe un <span class="font-medium text-black border-b border-black">20% de descuento</span> en tu primera compra online.</p>
             <form id="newsletter-form" class="space-y-6" onsubmit="event.preventDefault(); closeModal(); alert('¡Gracias! Te hemos enviado el código.');">
-                <div class="group relative">
-                    <input type="email" placeholder="Tu correo electrónico" class="w-full bg-transparent border-b border-gray-300 py-3 text-center focus:outline-none focus:border-black transition-colors placeholder-gray-400" required>
-                </div>
-                <button type="submit" class="btn-elegant w-full bg-white hover:bg-black hover:text-white border-black">
-                    Obtener mi 20% OFF
-                </button>
+                <div class="group relative"><input type="email" placeholder="Tu correo electrónico" class="w-full bg-transparent border-b border-gray-300 py-3 text-center focus:outline-none focus:border-black transition-colors placeholder-gray-400" required></div>
+                <button type="submit" class="btn-elegant w-full bg-white hover:bg-black hover:text-white border-black">Obtener mi 20% OFF</button>
             </form>
-            
-            <p class="text-[10px] text-gray-400 mt-6 uppercase tracking-widest cursor-pointer hover:text-gray-600 transition" onclick="closeModal()">
-                No gracias, prefiero pagar precio completo
-            </p>
+            <p class="text-[10px] text-gray-400 mt-6 uppercase tracking-widest cursor-pointer hover:text-gray-600 transition" onclick="closeModal()">No gracias, prefiero pagar precio completo</p>
         </div>
     </div>
 
@@ -225,161 +137,213 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center h-full">
             <!-- Logo area -->
             <a href="#" class="z-50 block opacity-90 hover:opacity-100 transition">
-                <img src="logo.png" 
-                     onerror="this.onerror=null; this.src='https://via.placeholder.com/150x40/ffffff/000000?text=MARFIL';" 
-                     alt="Marfil Sevilla" 
-                     class="h-10 object-contain grayscale"> 
+                <img src="logo.png" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x40/ffffff/000000?text=MARFIL';" alt="Marfil Sevilla" class="h-10 object-contain grayscale"> 
             </a>
 
-            <!-- Mobile Menu Toggle -->
-            <button class="md:hidden text-2xl text-gray-800"><i class="fas fa-bars"></i></button>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-800 focus:outline-none"><i class="fas fa-bars"></i></button>
 
             <!-- Desktop Menu -->
-            <div class="hidden md:flex gap-10 text-xs tracking-[0.2em] uppercase font-medium text-gray-600">
-                <a href="#filosofia" class="nav-link hover:text-black transition">Filosofía</a>
-                <a href="#coleccion" class="nav-link hover:text-black transition">Espacios</a>
-                <a href="#antes-despues" class="nav-link hover:text-black transition">Transformación</a>
-                <a href="#contacto" class="nav-link hover:text-black transition">Contacto</a>
+            <div class="hidden md:flex gap-8 text-xs tracking-[0.15em] uppercase font-medium text-gray-600 items-center">
+                <a href="#viviendas" class="nav-link hover:text-black transition">Viviendas</a>
+                <a href="#contract" class="nav-link hover:text-black transition">Contract</a>
+                <a href="#piscinas" class="nav-link hover:text-black transition">Piscinas</a>
+                <a href="#banos" class="nav-link hover:text-black transition">Baños</a>
+                <!-- Tienda destacada -->
+                <a href="#tienda" class="btn-elegant border-gray-800 text-gray-800 hover:bg-black hover:text-white !py-2 !px-4 ml-4">Diseños y Creaciones</a>
             </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 p-6 shadow-xl md:hidden flex-col gap-4 text-center">
+            <a href="#viviendas" class="block mobile-link text-sm uppercase tracking-widest text-gray-600 hover:text-black py-2">Viviendas</a>
+            <a href="#contract" class="block mobile-link text-sm uppercase tracking-widest text-gray-600 hover:text-black py-2">Contract</a>
+            <a href="#piscinas" class="block mobile-link text-sm uppercase tracking-widest text-gray-600 hover:text-black py-2">Piscinas</a>
+            <a href="#banos" class="block mobile-link text-sm uppercase tracking-widest text-gray-600 hover:text-black py-2">Baños</a>
+            <a href="#tienda" class="block mobile-link text-sm uppercase tracking-widest font-bold text-black border border-black py-3 mt-2">Diseños y Creaciones</a>
         </div>
     </nav>
 
     <!-- Hero Section con SLIDER AUTOMÁTICO -->
     <header class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#fcfbf9]">
-        
-        <!-- Contenedor de las diapositivas (Slides) -->
         <div class="absolute inset-0 z-0" id="hero-slider">
-            <!-- Slide 1 (Activa por defecto) -->
             <img src="slide1.webp" alt="Ambiente Marfil 1" class="hero-slide active">
-            <!-- Slide 2 -->
             <img src="slide2.webp" alt="Ambiente Marfil 2" class="hero-slide">
-            <!-- Slide 3 -->
             <img src="slide3.webp" alt="Ambiente Marfil 3" class="hero-slide">
-            <!-- Slide 4 -->
             <img src="slide4.webp" alt="Ambiente Marfil 4" class="hero-slide">
-            <!-- Slide 5 -->
             <img src="slide5.webp" alt="Ambiente Marfil 5" class="hero-slide">
-            <!-- Slide 6 -->
             <img src="slide6.webp" alt="Ambiente Marfil 6" class="hero-slide">
-            
-            <!-- Capa sutil blanca para asegurar que el texto se lea -->
             <div class="hero-overlay"></div>
         </div>
         
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
             <h2 class="text-xs md:text-sm text-gray-800 uppercase tracking-[0.4em] mb-6 animate-fade-up font-bold text-glow-contrast">Sevilla · Marbella</h2>
             <h1 class="text-5xl md:text-8xl font-serif font-light text-gray-900 leading-tight mb-8 animate-fade-up text-glow-contrast" style="animation-delay: 0.2s;">
-                La pureza <br> <span class="italic">del material</span>
+                Superficies <br> <span class="italic">con Alma</span>
             </h1>
-            <p class="text-gray-800 font-medium text-sm md:text-base max-w-lg mx-auto mb-10 leading-relaxed animate-fade-up shadow-sm text-glow-contrast" style="animation-delay: 0.4s;">
-                Transformamos y diseñamos espacios de vida.
-            </p>
             <div class="animate-fade-up" style="animation-delay: 0.6s;">
-                <a href="#coleccion" class="btn-elegant">Descubrir Colección</a>
+                <a href="#viviendas" class="btn-elegant">Ver Proyectos</a>
             </div>
         </div>
     </header>
 
-    <!-- Intro / Filosofía -->
-    <section id="filosofia" class="py-32 px-6 md:px-20 bg-white">
+    <!-- Intro -->
+    <section class="py-24 px-6 md:px-20 bg-white">
         <div class="max-w-5xl mx-auto text-center">
             <span class="block w-px h-16 bg-gray-300 mx-auto mb-8"></span>
-            <h3 class="text-3xl md:text-5xl font-serif italic text-gray-800 mb-10 leading-snug text-balance">
-                "Creemos en los espacios que transmiten serenidad, donde la textura imperfecta del cemento cuenta una historia."
+            <h3 class="text-2xl md:text-4xl font-serif italic text-gray-800 mb-6 leading-snug text-balance">
+                "Desde hogares privados hasta grandes proyectos contract. Creamos atmósferas únicas."
             </h3>
-            <div class="grid md:grid-cols-2 gap-12 mt-20 text-left">
-                <div class="relative">
-                    <div class="img-zoom-container aspect-[3/4]">
-                        <!-- Aquí puedes poner otra de tus fotos si quieres, ej: slide3.webp -->
-                        <img src="https://images.unsplash.com/photo-1595514020182-524623eb64f7?q=80&w=1000&auto=format&fit=crop" alt="Detalle textura" class="w-full h-full object-cover">
-                    </div>
-                </div>
-                <div class="flex flex-col justify-center px-4 md:px-10">
-                    <h4 class="text-xl font-serif mb-6">Artesanía Contemporánea</h4>
-                    <p class="text-gray-500 font-light mb-6 text-sm leading-7">
-                        Alejados de la producción masiva, tratamos cada suelo y cada pared como un lienzo único. Nuestra técnica manual asegura que ninguna superficie sea idéntica a otra, aportando esa calidez orgánica que el prefabricado no puede imitar.
-                    </p>
-                    <ul class="text-xs tracking-widest text-gray-800 space-y-4 uppercase mt-4">
-                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-gray-300"></span> Tonos Naturales</li>
-                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-gray-300"></span> Acabados Mate y Seda</li>
-                        <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-gray-300"></span> Continuidad Visual</li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Gallery / Espacios -->
-    <section id="coleccion" class="py-20 bg-[#fcfbf9]">
+    <!-- 1. VIVIENDAS -->
+    <section id="viviendas" class="py-20 bg-[#fcfbf9]">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 px-2">
-                <div>
-                    <span class="text-xs uppercase tracking-[0.3em] text-gray-400">Portfolio</span>
-                    <h2 class="text-4xl font-serif mt-3">Espacios Habitables</h2>
-                </div>
-                <div class="hidden md:block">
-                    <a href="#" class="text-xs border-b border-gray-800 pb-1 hover:text-gray-500 hover:border-gray-400 transition">Ver todos los proyectos</a>
-                </div>
+            <div class="text-center mb-12">
+                <span class="text-xs uppercase tracking-[0.3em] text-gray-400">Residencial</span>
+                <h2 class="text-4xl font-serif mt-2">Viviendas</h2>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Item 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="group cursor-pointer">
-                    <div class="img-zoom-container aspect-[4/5] mb-4 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="img-zoom-container aspect-[4/3] mb-4 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-lg font-serif">Residencia Triana</h3>
-                    <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Suelos & Cocina</p>
+                    <h3 class="text-xl font-serif">Casa Patio Sevilla</h3>
+                    <p class="text-xs text-gray-500 mt-1 uppercase">Suelos Continuos</p>
                 </div>
-                <!-- Item 2 -->
-                <div class="group cursor-pointer md:mt-12"> <!-- Staggered grid effect -->
-                    <div class="img-zoom-container aspect-[4/5] mb-4 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
+                <div class="group cursor-pointer md:mt-12">
+                    <div class="img-zoom-container aspect-[4/3] mb-4 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
                     </div>
-                    <h3 class="text-lg font-serif">Baño Minimalista</h3>
-                    <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Revestimiento Impermeable</p>
-                </div>
-                <!-- Item 3 -->
-                <div class="group cursor-pointer">
-                    <div class="img-zoom-container aspect-[4/5] mb-4 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg font-serif">Mobiliario Escultural</h3>
-                    <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Diseño a Medida</p>
+                    <h3 class="text-xl font-serif">Villa en la Costa</h3>
+                    <p class="text-xs text-gray-500 mt-1 uppercase">Reforma Integral</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Before/After Clean -->
-    <section id="antes-despues" class="py-32 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-serif mb-4">La Transformación</h2>
-                <p class="text-gray-500 font-light max-w-xl mx-auto">
-                    Sin escombros, sin ruido excesivo. El microcemento se aplica sobre la superficie existente, renovando el espacio por completo.
+    <!-- 2. CONTRACT -->
+    <section id="contract" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1">
+                <span class="text-xs uppercase tracking-[0.3em] text-gray-400">Profesional</span>
+                <h2 class="text-4xl font-serif mt-2 mb-6">Contract & Hoteles</h2>
+                <p class="text-gray-500 font-light mb-8 leading-relaxed">
+                    Soluciones de alta resistencia para espacios de alto tránsito. Hoteles, restaurantes y locales comerciales que buscan una identidad propia y duradera.
                 </p>
+                <a href="#contacto" class="text-xs border-b border-black pb-1 uppercase tracking-widest hover:text-gray-600 transition">Solicitar Dossier Profesional</a>
+            </div>
+            <div class="order-1 md:order-2 img-zoom-container aspect-square">
+                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="Hotel Lobby">
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PISCINAS -->
+    <section id="piscinas" class="py-20 bg-[#f4f4f4]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-xs uppercase tracking-[0.3em] text-gray-400">Exteriores</span>
+                <h2 class="text-4xl font-serif mt-2">Piscinas de Diseño</h2>
+            </div>
+            <div class="relative w-full h-[500px] overflow-hidden group">
+                <img src="https://images.unsplash.com/photo-1572331165267-854da2b00dc1?q=80&w=1600&auto=format&fit=crop" class="w-full h-full object-cover transition duration-1000 group-hover:scale-105" alt="Piscina Microcemento">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition"></div>
+                <div class="absolute bottom-10 left-10 text-white">
+                    <h3 class="text-2xl font-serif italic">Acabados Antideslizantes</h3>
+                    <p class="text-sm font-light mt-2">Integración total con el paisaje.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. BAÑOS -->
+    <section id="banos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8">
+            <div class="img-zoom-container aspect-[3/4]">
+                <img src="https://images.unsplash.com/photo-1552321901-700977a229d1?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover" alt="Baño Microcemento">
+            </div>
+            <div class="flex flex-col justify-center px-6">
+                <span class="text-xs uppercase tracking-[0.3em] text-gray-400">Zonas Húmedas</span>
+                <h2 class="text-4xl font-serif mt-2 mb-6">Baños & Spa</h2>
+                <p class="text-gray-500 font-light mb-8">
+                    Creación de duchas continuas, bañeras de obra y encimeras sin juntas. Higiene máxima y estética relajante con revestimientos impermeables de última generación.
+                </p>
+                <ul class="text-xs tracking-widest text-gray-800 space-y-4 uppercase">
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-gray-300"></i> Impermeable</li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-gray-300"></i> Sin juntas</li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-gray-300"></i> Fácil limpieza</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TIENDA ONLINE: Diseños y Creaciones Marfil -->
+    <section id="tienda" class="py-24 bg-[#f9f8f6] border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif mb-4">Diseños y Creaciones Marfil</h2>
+                <p class="text-gray-500 italic">Piezas únicas de hormigón hechas a mano. Compra online.</p>
+                <a href="#" class="inline-block mt-6 text-xs border-b border-black pb-1 uppercase tracking-widest hover:text-gray-600">Ver catálogo completo</a>
             </div>
 
-            <div class="comparison-container shadow-2xl">
-                <div class="img-comp-img img-comp-overlay">
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Después">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Producto 1 -->
+                <div class="shop-card bg-white p-4 group cursor-pointer">
+                    <div class="aspect-square bg-gray-100 overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute top-2 right-2 bg-black text-white text-[10px] px-2 py-1 uppercase tracking-wider">Nuevo</div>
+                    </div>
+                    <h4 class="font-serif text-lg">Lavabo Nómada</h4>
+                    <p class="text-xs text-gray-400 mt-1 mb-3">Hormigón Aligerado</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium">350 €</span>
+                        <span class="text-xs uppercase border-b border-gray-300 group-hover:border-black transition">Añadir</span>
+                    </div>
                 </div>
-                <div class="img-comp-img">
-                    <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Antes" class="grayscale"> 
+                <!-- Producto 2 -->
+                <div class="shop-card bg-white p-4 group cursor-pointer">
+                    <div class="aspect-square bg-gray-100 overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1505693444031-a1e538c878f4?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h4 class="font-serif text-lg">Mesa Centro Bloc</h4>
+                    <p class="text-xs text-gray-400 mt-1 mb-3">Microcemento Gris</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium">180 €</span>
+                        <span class="text-xs uppercase border-b border-gray-300 group-hover:border-black transition">Añadir</span>
+                    </div>
                 </div>
-                
-                <div class="slider-line absolute inset-y-0 left-1/2 w-0.5 bg-white z-10 pointer-events-none" id="slider-line"></div>
-                <div class="slider-handle" id="slider-handle">
-                    <i class="fas fa-chevron-left text-xs mr-1"></i><i class="fas fa-chevron-right text-xs"></i>
+                 <!-- Producto 3 -->
+                 <div class="shop-card bg-white p-4 group cursor-pointer">
+                    <div class="aspect-square bg-gray-100 overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h4 class="font-serif text-lg">Lámpara Sólida</h4>
+                    <p class="text-xs text-gray-400 mt-1 mb-3">Estilo Industrial</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium">95 €</span>
+                        <span class="text-xs uppercase border-b border-gray-300 group-hover:border-black transition">Añadir</span>
+                    </div>
+                </div>
+                 <!-- Producto 4 -->
+                 <div class="shop-card bg-white p-4 group cursor-pointer">
+                    <div class="aspect-square bg-gray-100 overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1583847661584-811197607ea0?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h4 class="font-serif text-lg">Macetero Cónico</h4>
+                    <p class="text-xs text-gray-400 mt-1 mb-3">Exterior/Interior</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium">45 €</span>
+                        <span class="text-xs uppercase border-b border-gray-300 group-hover:border-black transition">Añadir</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contacto Minimal -->
-    <section id="contacto" class="py-32 bg-[#fcfbf9] border-t border-gray-100">
+    <section id="contacto" class="py-32 bg-white border-t border-gray-100">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <h2 class="text-4xl md:text-5xl font-serif italic mb-8">Comencemos un proyecto</h2>
             <p class="text-gray-500 mb-12 font-light">
@@ -420,13 +384,9 @@
         // --- Loader & Modal Logic ---
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
-            
-            // 1. Hide Loader
             loader.style.opacity = '0';
             setTimeout(() => {
                 loader.style.display = 'none';
-                
-                // 2. Show Modal with Delay (e.g. 2.5 seconds after load)
                 setTimeout(showModal, 2500);
             }, 500);
         });
@@ -439,7 +399,6 @@
 
         function showModal() {
             modal.classList.remove('hidden');
-            // Small timeout to allow transition
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modalContent.classList.remove('scale-95');
@@ -453,31 +412,37 @@
             modalContent.classList.add('scale-95');
             setTimeout(() => {
                 modal.classList.add('hidden');
-            }, 500); // Matches transition duration
+            }, 500); 
         }
 
-        // Close on Backdrop Click
         modalBackdrop.addEventListener('click', closeModal);
-        // Close on Button Click
         closeModalBtn.addEventListener('click', closeModal);
 
+        // --- MOBILE MENU LOGIC ---
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if(mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex'); 
+            });
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                });
+            });
+        }
 
         // --- GSAP Animations ---
         gsap.registerPlugin(ScrollTrigger);
-
-        // Fade Up Elements
         gsap.utils.toArray('.animate-fade-up').forEach(element => {
             gsap.fromTo(element, 
                 { y: 50, opacity: 0 },
                 {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1.2,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 85%"
-                    }
+                    y: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+                    scrollTrigger: { trigger: element, start: "top 85%" }
                 }
             );
         });
@@ -486,64 +451,17 @@
         function startHeroSlider() {
             const slides = document.querySelectorAll('.hero-slide');
             let currentSlide = 0;
-            const slideInterval = 5000; // Cambia cada 5 segundos
+            const slideInterval = 5000; 
 
-            setInterval(() => {
-                // Quitar clase 'active' a la actual
-                slides[currentSlide].classList.remove('active');
-                
-                // Calcular siguiente
-                currentSlide = (currentSlide + 1) % slides.length;
-                
-                // Poner clase 'active' a la siguiente
-                slides[currentSlide].classList.add('active');
-            }, slideInterval);
-        }
-        // Iniciar slider cuando cargue el DOM
-        document.addEventListener('DOMContentLoaded', startHeroSlider);
-
-
-        // --- Image Comparison Slider Logic ---
-        function initComparison() {
-            const container = document.querySelector('.comparison-container');
-            const overlay = document.querySelector('.img-comp-overlay');
-            const handle = document.querySelector('.slider-handle');
-            const line = document.querySelector('.slider-line');
-            
-            let isDragging = false;
-
-            if(overlay) overlay.style.width = '50%';
-            
-            if(container && handle) {
-                const startDrag = () => isDragging = true;
-                const stopDrag = () => isDragging = false;
-                const moveDrag = (pageX) => {
-                    if (!isDragging) return;
-                    slide(pageX);
-                };
-
-                handle.addEventListener('mousedown', startDrag);
-                window.addEventListener('mouseup', stopDrag);
-                container.addEventListener('mousemove', (e) => moveDrag(e.pageX));
-
-                handle.addEventListener('touchstart', startDrag);
-                window.addEventListener('touchend', stopDrag);
-                container.addEventListener('touchmove', (e) => moveDrag(e.touches[0].pageX));
-
-                function slide(xPos) {
-                    const rect = container.getBoundingClientRect();
-                    let x = xPos - rect.left;
-                    if (x < 0) x = 0;
-                    if (x > rect.width) x = rect.width;
-                    
-                    const percent = (x / rect.width) * 100;
-                    overlay.style.width = percent + "%";
-                    handle.style.left = percent + "%";
-                    line.style.left = percent + "%";
-                }
+            if (slides.length > 0) {
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, slideInterval);
             }
         }
-        document.addEventListener('DOMContentLoaded', initComparison);
+        document.addEventListener('DOMContentLoaded', startHeroSlider);
     </script>
 </body>
 </html>
