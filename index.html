@@ -110,7 +110,8 @@
         .comparison-container {
             position: relative;
             width: 100%;
-            height: 60vh; /* Altura del slider */
+            /* Altura vertical basada en la proporción de la imagen proporcionada */
+            aspect-ratio: 9 / 16; 
             overflow: hidden;
             background: #f0f0f0; /* Fondo por si tarda en cargar */
         }
@@ -342,34 +343,41 @@
         </div>
     </section>
 
-    <!-- RENOVA (Antes y Después SLIDER) -->
+    <!-- RENOVA (Antes y Después SLIDER) - Actualizado con formato vertical -->
     <section id="antes-despues" class="py-32 bg-[#fcfbf9]">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-serif mb-4">RENOVA</h2>
-                <p class="text-gray-500 font-light max-w-xl mx-auto uppercase tracking-widest text-xs">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <!-- Columna Izquierda: Slider de comparación vertical -->
+            <div class="order-2 md:order-1">
+                <div class="comparison-container shadow-2xl">
+                    <!-- Imagen SUPERIOR (DESPUES) - Se recorta al mover el slider -->
+                    <div class="img-comp-img img-comp-overlay">
+                        <!-- Usando una imagen vertical de ejemplo -->
+                        <img src="after.webp" alt="Después">
+                    </div>
+                    
+                    <!-- Imagen INFERIOR (ANTES) - Siempre visible debajo -->
+                    <div class="img-comp-img">
+                        <!-- Usando una imagen vertical de ejemplo (escala de grises) -->
+                        <img src="before.webp" alt="Antes" class="grayscale"> 
+                    </div>
+                    
+                    <!-- Tirador redondo (Handle) -->
+                    <div class="slider-handle" id="slider-handle">
+                        <i class="fas fa-arrows-left-right"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Columna Derecha: Texto explicativo -->
+            <div class="order-1 md:order-2">
+                <span class="text-xs uppercase tracking-[0.3em] text-gray-400">Transformación</span>
+                <h2 class="text-3xl md:text-4xl font-serif mt-2 mb-6">RENOVA</h2>
+                <p class="text-gray-500 font-light mb-8 leading-relaxed">
+                    Nuestra pasión es dar una segunda vida a los espacios. Observa cómo la aplicación de nuestros revestimientos continuos transforma por completo el ambiente, aportando luz, uniformidad y un estilo contemporáneo sin necesidad de obras complejas.
+                </p>
+                <p class="text-gray-500 font-light uppercase tracking-widest text-xs mb-4">
                     Desliza para ver el antes y después
                 </p>
-            </div>
-
-            <!-- Contenedor del Slider -->
-            <div class="comparison-container shadow-2xl">
-                <!-- Imagen SUPERIOR (DESPUES) - Se recorta al mover el slider -->
-                <!-- La clase img-comp-overlay controla el ancho visible -->
-                <div class="img-comp-img img-comp-overlay">
-                    <!-- IMPORTANTE: onerror carga imagen de prueba si 'after.webp' no existe -->
-                    <img src="after.webp" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'" alt="Después">
-                </div>
-                
-                <!-- Imagen INFERIOR (ANTES) - Siempre visible debajo -->
-                <div class="img-comp-img">
-                    <img src="before.webp" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'" alt="Antes" class="grayscale"> 
-                </div>
-                
-                <!-- Tirador redondo (Handle) -->
-                <div class="slider-handle" id="slider-handle">
-                    <i class="fas fa-arrows-left-right"></i>
-                </div>
             </div>
         </div>
     </section>
